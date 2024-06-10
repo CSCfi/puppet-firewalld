@@ -31,3 +31,8 @@ Lockdown=<%= @lockdown %>
 # The rp_filter for IPv4 is controlled using sysctl.
 # Default: yes
 IPv6_rpfilter=<%= @ipv6_rpfilter %>
+
+<% if @firewall_backend -%>
+FirewallBackend=<%= @firewall_backend -%>
+<% end -%>
+

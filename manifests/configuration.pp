@@ -42,7 +42,9 @@
 #   Performs a reverse path filter test on a packet for IPv6. If a reply to
 #   the packet would be sent via the same interface that the packet arrived on,
 #   the packet will match and be accepted, otherwise dropped. Default is 'yes'.
-#
+# [*firewall_backend*]
+#   what backend firewalld should use, iptables or nftables
+#   only available on newer firewalld (RHEL8->)
 # === Examples
 #
 #  class {'firewalld::configuration':
@@ -54,6 +56,7 @@ class firewalld::configuration (
   $cleanup_on_exit = 'yes',
   $lockdown = 'no',
   $ipv6_rpfilter = 'yes',
+  $firewall_backend = undef,
 ) {
 
   include firewalld
