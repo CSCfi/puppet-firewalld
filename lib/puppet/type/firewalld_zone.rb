@@ -60,7 +60,15 @@ Puppet::Type.newtype(:firewalld_zone) do
   ensurable
 
   newparam(:name) do
-      desc "The name of the zone"
+    desc "The name of the zone"
+    validate do |value|
+      unless value =~ /^[A-Za-z0-9_]+$/
+        raise(ArgumentError, "Invalid zone name: #{name}") 
+      end
+      if value.length > 17
+        raise(ArgumentError, "Zone name longer than 17 characters: #{name}")
+      end
+    end
   end 
 
   newparam(:target) do
@@ -70,6 +78,7 @@ Puppet::Type.newtype(:firewalld_zone) do
       doesn't match any rule (port, service, etc.).
       Default (when target is not specified) is reject.
     EOT
+    newvalues('ACCEPT', '%%REJECT%%', 'DROP')
   end
 
   newparam(:short) do
