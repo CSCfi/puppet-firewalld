@@ -55,7 +55,7 @@ class firewalld::configuration (
   $minimal_mark = '100',
   $cleanup_on_exit = 'yes',
   $lockdown = 'no',
-  $ipv6_rpfilter = 'yes',
+  $ipv6_rpfilter = 'no',
   $firewall_backend = undef,
 ) {
 
